@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 
 const Cart = (props) => {
@@ -14,15 +13,15 @@ const Cart = (props) => {
                         <Card.Subtitle>{item.currency + item.price}</Card.Subtitle>
                         <Card.Body>{item.quantity}
                          <Button variant="light" onClick={() => props.increaseCart(item)}>+</Button>
-                         <Button variant="light">-</Button>
+                         <Button variant="light" onClick={() => props.subtractCart(item)}>-</Button>
                         </Card.Body>
                         <Button onClick={() => props.removeCart(item)} variant="danger">Remove</Button>
-                        <Card.Img src={item.image}/>
+                        <Card.Img className='cart-image' src={item.image}/>
                     </Card>)
                  })
                 }
-             <Button>Submit Order</Button>
             </Container>
+            <Button>Submit Order</Button>
 
         </div>
     )

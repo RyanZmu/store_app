@@ -96,3 +96,22 @@ h1,h2 {
   height: 75vh;
   object-fit: contain;
 }
+
+#cart-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.cart-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  margin: 10px
+}
+
+.cart-image {
+  height: 25vh;
+  object-fit: contain;
+}

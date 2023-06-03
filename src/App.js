@@ -44,11 +44,19 @@ function App () {
                 if (!cartInv.some(item => item._id === itemToAdd._id)){
                 cartState([...cartInv,itemToAdd])
                 }else { //if already in cart then increase quantity
-                cartInv.map(item => item.quantity += 1)
+                itemToAdd.quantity +=1
                 cartState([...cartInv]) //update state
                 }
 
             }
+
+        async function subtractItems(itemToSubtract) {
+              console.log(itemToSubtract)
+              if (itemToSubtract.quantity >= 2) {
+                itemToSubtract.quantity -= 1
+              }
+              cartState([...cartInv])
+        }
 
 
         async function removeItems(itemToRemove) {
@@ -89,7 +97,8 @@ return (
             element= {<Cart
             cart={cartInv}
             increaseCart={addCart}
-            removeCart={removeItems} />}/>
+            removeCart={removeItems} 
+            subtractCart={subtractItems} />}/>
         </Routes>
     </div>
     )
