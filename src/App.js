@@ -26,38 +26,38 @@ function App () {
                 })
                 },[apiURL])
 
-        //Filter
+            //Filter
         async function filterItems (requestedCategory) {
                 console.log({requestedCategory});
                 // console.log({storeInventory});
                 return filterState(storeData.filter(items => items.category === requestedCategory))
             }
-                // console.log({filteredData});
 
-
-        //Cart functions
+            //Cart functions
         async function addCart (itemToAdd) {
             console.log(itemToAdd);
-
             //creates quantity for item, starts at 1 once user adds to cart. Compare to stock count when user submits order
-            if (itemToAdd.quantity === undefined){
+                if (itemToAdd.quantity === undefined || itemToAdd.quantity === 0){
                 itemToAdd.quantity = 1
-            }
-
-            //take current cart inv and then add next item with ...
-            if (!cartInv.includes(itemToAdd)){
-                cartState([...cartInv,itemToAdd])
-            }
-
-            //increase item quantity in cart by 1
-            cartInv.map(item => {
-                if (item._id === itemToAdd._id) {
-                    item.quantity +=1
                 }
-                return item
-              })
+
+                if (!cartInv.some(item => item._id === itemToAdd._id)){
+                cartState([...cartInv,itemToAdd])
+                }else { //if already in cart then increase quantity
+                cartInv.map(item => item.quantity += 1)
+                cartState([...cartInv]) //update state
+                }
+
             }
-            // console.log({cartInv});
+
+
+        async function removeItems(itemToRemove) {
+              let indexToRemove =  cartInv.indexOf(itemToRemove)
+              console.log(indexToRemove);
+              itemToRemove.quantity = 0
+              cartInv.splice(indexToRemove,1,)
+              cartState([...cartInv]) //update state
+            }
 
 
 return (
@@ -88,7 +88,8 @@ return (
             path='/cart'
             element= {<Cart
             cart={cartInv}
-            increaseCart={addCart} />}/>
+            increaseCart={addCart}
+            removeCart={removeItems} />}/>
         </Routes>
     </div>
     )

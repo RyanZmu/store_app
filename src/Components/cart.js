@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 
 const Cart = (props) => {
     console.log(props.cart);
+
 
     return (
         <div id="cart-page">
@@ -14,12 +16,12 @@ const Cart = (props) => {
                          <Button variant="light" onClick={() => props.increaseCart(item)}>+</Button>
                          <Button variant="light">-</Button>
                         </Card.Body>
-                        <Button variant="danger">Remove</Button>
+                        <Button onClick={() => props.removeCart(item)} variant="danger">Remove</Button>
                         <Card.Img src={item.image}/>
                     </Card>)
                  })
                 }
-            <Button>Submit Order</Button>
+             <Button>Submit Order</Button>
             </Container>
 
         </div>

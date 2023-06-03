@@ -1,22 +1,13 @@
-import { useEffect , useState} from "react";
+// import { useEffect , useState} from "react";
+import { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
 const ProductPage = (props) => {
     let productId = useParams().id
-    let fetchURL = `/api/v1/store/${productId}`
-    let [productInfo, productState] = useState({})
+    let productInfo = props.storeData.find(item => item._id === productId) // find the product requested
 
-    //For now go against DRY and have another fetch, later make a separate fetch component that all other components can call on.
-    //API Call for current item
-    useEffect(() => {
-        fetch(fetchURL)
-        .then(result => result.json())
-        .then(body => productState(body))
-        .catch(error => {
-            console.error('Error with fetching',error.message)
-        })
-        },[fetchURL])
+    // console.log(productInfo);
 
     return (
         <div>
