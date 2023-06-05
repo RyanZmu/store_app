@@ -1,7 +1,6 @@
-// import { useEffect , useState} from "react";
-import { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import addTOCartImg from '../images/add-to-cart.png';
 
 const ProductPage = (props) => {
     let productId = useParams().id
@@ -18,7 +17,9 @@ const ProductPage = (props) => {
                 <Card.Subtitle>{productInfo.category}</Card.Subtitle>
                 <Card.Img id='product-info-img' src={productInfo.image} />
                 <Card.Text>{productInfo.currency + productInfo.price}</Card.Text>
-                <Button id='purchase-button' onClick={() => props.addCart(productInfo)}>Add to Cart</Button>
+                <Button id='purchase-button' onClick={() => props.addCart(productInfo)}>
+                 <img src={addTOCartImg} alt='shopping bag icon'/>Add to Cart
+                </Button>
             </Card>
            </Container>
         </div>

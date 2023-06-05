@@ -115,3 +115,27 @@ h1,h2 {
   height: 25vh;
   object-fit: contain;
 }
+
+#login-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+  flex-grow: 3;
+  flex-shrink: 4;
+}
+
+#nav-user-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+  /* flex-grow: 1; */
+  color:white;
+}
+
+.nav-user-img {
+  height: 3vh;
+}
+
+.cart-icon {
+  margin-right: 2em;
+}

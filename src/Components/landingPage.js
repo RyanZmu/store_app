@@ -51,7 +51,8 @@ const LandingPage = (props) => {
         </Nav.Link>
 
           <Nav.Link as={Link} to='/clothes'>
-            <Card className='card-ele' bg='dark' text='light'>
+            <Card
+            className='card-ele' bg='dark' text='light'>
                 <Card.Header>Clothes</Card.Header>
                 <Card.Img className='category-card-img' src={clothesCategoryImg}/>
                 <Card.Body>

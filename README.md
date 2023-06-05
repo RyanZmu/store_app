@@ -1,18 +1,22 @@
 Application Project Outline:
 
-Tools:
+Frontend Tools:
 - React
 - CSS/HTML
 - Formik
+- Auth0
+- Bootstrapper
+- React Router Dom
+
+Backend Tools:
 - Node.js
 - Express
 - MongoDB
-- Bootstrapper
+- Mongoose
 - Postman
-- Terraform
-- Jenkins
-- Ansible (possibly)
-- Tailwind/SASS (maybe)
+- Terraform - Instance Provisioning
+- Jenkins - CI/CD
+- Ansible
 
 
 Application Expectations:

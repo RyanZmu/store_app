@@ -7,12 +7,16 @@ import NavBar from './Components/navbar'
 import Cart from './Components/cart'
 import StoreFront from './Components/store_front'
 import ProductPage from './Components/product_page'
+import UserProfile from './Components/user_profile'
+import CartMessage from './Components/cart_toast'
 // import Banner from './Components/banner'
 
 function App () {
     let [storeData, dataState] = useState([]) // initial store data - all items
     let [filteredData, filterState] = useState([]) // filtered if user requests it
     let [cartInv, cartState] = useState([]) // tracks cart inventory
+    let [searchedData, searchState] = useState([])
+    let itemSearched;
 
     let apiURL = '/api/v1/store'
 
@@ -47,6 +51,7 @@ function App () {
                 itemToAdd.quantity +=1
                 cartState([...cartInv]) //update state
                 }
+                // <CartMessage />
 
             }
 
@@ -67,11 +72,26 @@ function App () {
               cartState([...cartInv]) //update state
             }
 
+        async function searchStore (searchReq) {
+            console.log(searchReq);
+            console.log((filteredData));
+
+            filterState(storeData.map(item => {
+                if (item.name.includes(searchReq)) {
+                    console.log(item);
+                     return filterState(item)
+                }
+                console.log(filteredData);
+                return filteredData
+            }))
+        }
+
 
 return (
      <div id='App'>
-            {/* <Banner /> */}
-        <NavBar />
+        <NavBar
+        searchData={searchStore}
+        />
 
         <Routes>
             <Route
@@ -97,9 +117,15 @@ return (
             element= {<Cart
             cart={cartInv}
             increaseCart={addCart}
-            removeCart={removeItems} 
+            removeCart={removeItems}
             subtractCart={subtractItems} />}/>
+
+            <Route
+            path='/profile'
+            element={<UserProfile />}/>
         </Routes>
+
+        <footer>Icons Provided By:<a href="https://www.flaticon.com/" title="pine icons">Pine icons created by Freepik - Flaticon</a></footer>
     </div>
     )
 }

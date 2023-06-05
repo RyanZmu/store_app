@@ -1,4 +1,4 @@
-import { Card, Container, Button,Dropdown, ButtonGroup,DropdownButton } from "react-bootstrap";
+import { Card, Container, Button,Dropdown, ButtonGroup,DropdownButton, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 //Product Images - console log for URI image link, need to be imported; find a better way
@@ -12,20 +12,19 @@ import officeSlacksImg from '../images/products/office_slacks.jpg'
 import smartWatchImg from '../images/products/smart_watch.jpg'
 import suedeShoesImg from '../images/products/brown_suede.jpg'
 import crewNeckImg from '../images/products/crew_tshirt.jpg'
+import addTOCartImg from '../images/add-to-cart.png'
+// import cartMessage from './cart_toast'
 
 const StoreFront = (props) => {
     let storeInventory = props.storeData
 
     // console.log(props.category);
-    // console.log({storeInventory});
-
+    console.log({storeInventory});
     return (
   <div>
     <h2>Browse our current stock</h2>
-    <p>Search bar here or in nav - Filter list on side</p>
-
 {/* Keep filter list here since it will only be used in the storefront */}
-    <Container className='filter-list-container'>
+    <Container fluid className='filter-list-container'>
                 <DropdownButton as={ButtonGroup} title='Filter' vertical>
                     <Dropdown.Item eventKey="1" onClick={() => props.category("")}>All
                     </Dropdown.Item>
@@ -42,14 +41,15 @@ const StoreFront = (props) => {
             let idURL = `/store/${data._id}` //creates URL for each item
 
            return <Card id={data._id} key={data._id} className='product-cards'>
-            <Card.Img src={data.image} alt={data.name} className='product-images'/>
+            <Nav.Link as={Link} to={idURL}><Card.Img src={data.image} alt={data.name} className='product-images'/></Nav.Link>
             <Card.Body>
-            <Card.Title>{`${data.name} Rating: ${data.rating}/5 Stars`}</Card.Title>
-            <Card.Subtitle>{data.currency + data.price}</Card.Subtitle>
-             <Card.Subtitle>{data.category}</Card.Subtitle>
-             <Button id='store-button' as={Link} to={idURL}>Product Page</Button> <Button id='purchase-button'onClick={() => props.addCart(data)}>Add to Cart</Button>
-             </Card.Body>
-           </Card> //Next work on store pages for each item
+              <Card.Title>{`${data.name} Rating: ${data.rating}/5 Stars`}</Card.Title>
+              <Card.Subtitle>{data.currency + data.price}</Card.Subtitle>
+              <Card.Subtitle>{data.category}</Card.Subtitle>
+              <Button id='purchase-button'onClick={() => props.addCart(data)}>
+              <img src={addTOCartImg} alt={'shopping bad icon'}/>Add to Cart</Button>
+            </Card.Body>
+           </Card>//Next work on store pages for each item
         }) : null //conditional so no rendering when data not found
        }
     </Container>
