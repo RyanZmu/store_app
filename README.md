@@ -1,18 +1,33 @@
 Application Project Outline:
 
-Tools:
+Frontend Tools:
 - React
 - CSS/HTML
 - Formik
+- Auth0
+- Bootstrapper
+- React Router Dom
+
+Backend Tools:
 - Node.js
 - Express
 - MongoDB
-- Bootstrapper
+- Mongoose
 - Postman
-- Terraform
-- Jenkins
-- Ansible (possibly)
-- Tailwind/SASS (maybe)
+- Terraform - Instance Provisioning
+- Jenkins - CI/CD
+- Ansible
+
+Current Work (1-5 for difficulty):
+- Display active filters and allow user to click X and remove the filter - implement after Price Range filtering is added (3)
+- Add alerts for login/logout (1)
+- Consider function for when a user completes login, hide the Login button and replace with the profile componenet, so Log In wont be an option if already Logged in (2)
+- Work on hovering animation for cart - show inventory when hovering (3)
+- Remove cart alert when adding items to the cart via the cart page (not needed) (1)
+
+
+Current Issues:
+
 
 
 Application Expectations:
@@ -21,7 +36,7 @@ Application Expectations:
 - Jenkins will look at our repo for the application and do a git pull whenever it detects a git push has happened, giving CI/CD
 - Frontend will be  quite basic, mostly Bootstrapper elements and at least three different pages to route to.
 - Express will handle routing, will need to refresh myself a bit
-- Ansible may come into play later on, not quite sure how yet but maybe we can add some monitoring tools to the server for some security reasons.
+- Use Ansible Molecule to run some automated tests to ensure API and other functionallity is working when code is added via Jenkins Pipeline
 
 
 					Store Application
