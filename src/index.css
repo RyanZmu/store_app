@@ -7,6 +7,15 @@
   background-color: grey;
 }
 
+body {
+  padding-top: 80px;
+}
+@media (max-width: 979px) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
+  body {
+    padding-top: 0px;
+  }
+}
+
 h1,h2 {
   color: black;
 }
@@ -101,6 +110,7 @@ h1,h2 {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .cart-card {
@@ -128,7 +138,6 @@ h1,h2 {
   display: flex;
   justify-content: flex-end;
   flex-flow: row nowrap;
-  /* flex-grow: 1; */
   color:white;
 }
 
@@ -137,5 +146,12 @@ h1,h2 {
 }
 
 .cart-icon {
-  margin-right: 2em;
+  margin-right: 1em;
+}
+
+#cart-alert {
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  background-color: hsla(100, 50%, 70%, 90%); /*added some transparency to avoid blocking text with the alert box - overrode bootstrap stylings*/
 }

@@ -40,7 +40,7 @@ const LandingPage = (props) => {
 
 {/* Cards for different categories - make own cards component possibly*/}
         <Container className='landing-card-container' fluid='true'>
-         <Nav.Link as={Link} to='/home'>
+         <Nav.Link as={Link} to='/store' onClick={() => {props.category("Home")}}>
             <Card className='card-ele' bg='dark' text='light' >
                 <Card.Header>Home</Card.Header>
                 <Card.Img className='category-card-img' src={homeCategoryImg}/>
@@ -50,7 +50,7 @@ const LandingPage = (props) => {
             </Card>
         </Nav.Link>
 
-          <Nav.Link as={Link} to='/clothes'>
+          <Nav.Link as={Link} to='/store' onClick={() => {props.category("Clothes")}}>
             <Card
             className='card-ele' bg='dark' text='light'>
                 <Card.Header>Clothes</Card.Header>
@@ -61,7 +61,7 @@ const LandingPage = (props) => {
             </Card>
          </Nav.Link>
 
-          <Nav.Link as={Link} to='/electronics'>
+          <Nav.Link as={Link} to='/store' onClick={() => {props.category("Electronics")}}>
             <Card className='card-ele' bg='dark' text='light'>
                 <Card.Header>Electronics</Card.Header>
                 <Card.Img className='category-card-img' src={electronicsCategoryImg}/>

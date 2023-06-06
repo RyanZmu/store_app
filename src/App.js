@@ -9,14 +9,13 @@ import StoreFront from './Components/store_front'
 import ProductPage from './Components/product_page'
 import UserProfile from './Components/user_profile'
 import CartMessage from './Components/cart_toast'
-// import Banner from './Components/banner'
 
 function App () {
     let [storeData, dataState] = useState([]) // initial store data - all items
     let [filteredData, filterState] = useState([]) // filtered if user requests it
+    let [isFIlterActive, filterActiveState] = useState(true) //button starts DISABLED
     let [cartInv, cartState] = useState([]) // tracks cart inventory
-    let [searchedData, searchState] = useState([])
-    let itemSearched;
+    let [cartAdded, cartAddState] = useState(false) //check for cart alert
 
     let apiURL = '/api/v1/store'
 
@@ -32,14 +31,14 @@ function App () {
 
             //Filter
         async function filterItems (requestedCategory) {
-                console.log({requestedCategory});
-                // console.log({storeInventory});
+                // if requestCategory is ALL ("") then disable filter button, otherwise Enable it
+                requestedCategory === "" ? filterActiveState(true) : filterActiveState(false)
+
                 return filterState(storeData.filter(items => items.category === requestedCategory))
             }
 
             //Cart functions
         async function addCart (itemToAdd) {
-            console.log(itemToAdd);
             //creates quantity for item, starts at 1 once user adds to cart. Compare to stock count when user submits order
                 if (itemToAdd.quantity === undefined || itemToAdd.quantity === 0){
                 itemToAdd.quantity = 1
@@ -50,8 +49,13 @@ function App () {
                 }else { //if already in cart then increase quantity
                 itemToAdd.quantity +=1
                 cartState([...cartInv]) //update state
-                }
-                // <CartMessage />
+            }
+                cartAddState(true,itemToAdd._id)
+
+                // timeout the alert
+                setTimeout(() => {
+                    cartAddState(false)
+                }, 3000);
 
             }
 
@@ -72,31 +76,38 @@ function App () {
               cartState([...cartInv]) //update state
             }
 
+            // Search bar
         async function searchStore (searchReq) {
             console.log(searchReq);
-            console.log((filteredData));
+            let itemSearched;
 
-            filterState(storeData.map(item => {
-                if (item.name.includes(searchReq)) {
-                    console.log(item);
-                     return filterState(item)
-                }
-                console.log(filteredData);
-                return filteredData
-            }))
-        }
+            if (searchReq.search !== "") {
+                storeData.filter(item => {
+                    if (item.name.toLowerCase().includes(searchReq.search.toLowerCase())) {
+                    return itemSearched = item
+                    }
+                })
+            filterActiveState(false) // disabled==false so remove button works
+            return itemSearched !== undefined ? filterState([itemSearched]) : null // store front expects an array, if itemSearched is invalid then we do nothing
+            }}
 
 
 return (
      <div id='App'>
         <NavBar
         searchData={searchStore}
+        filterItems={filterItems}
         />
 
+        {/*when a user adds to cart, show message  */}
+        {cartAdded === true ?<CartMessage cartAdded={cartAdded}/> : null}
+
+        {/* Routing */}
         <Routes>
             <Route
             path='/'
-            element= {<LandingPage />}/>
+            element= {<LandingPage
+            category={filterItems} />}/>
 
             <Route
             path='/store/:id'
@@ -107,9 +118,11 @@ return (
             <Route
             path='/store'
             element= {<StoreFront
-            storeData={filteredData.length >= 1 ? filteredData : storeData} //pass all
+            storeData={filteredData.length >= 1 ? filteredData : storeData} //if filter/search is invoked, use filterData
             category={filterItems}
-            addCart={addCart} />}/>
+            addCart={addCart}
+            isCartAdded={cartAdded}
+            isFilterActive={isFIlterActive} />}/>
             {/* here we send the filterItems function to /store and then the OnClick function in /store sends it's data back to the App component, do same for API Request component if possible */}
 
             <Route
@@ -125,7 +138,7 @@ return (
             element={<UserProfile />}/>
         </Routes>
 
-        <footer>Icons Provided By:<a href="https://www.flaticon.com/" title="pine icons">Pine icons created by Freepik - Flaticon</a></footer>
+        <footer>Icons Provided By:<a href="https://www.flaticon.com/" > Flaticon </a></footer>
     </div>
     )
 }

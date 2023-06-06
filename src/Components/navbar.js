@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import { Nav, Navbar, Container, Button } from "react-bootstrap"
 import shoppingCart from '../images/shopping-cart.png'
+import { Formik, Form, Field } from "formik"
 
 
 const NavBar = (props) => {
@@ -10,20 +11,39 @@ const NavBar = (props) => {
   const { user, isAuthenticated} = useAuth0();
   let searched = ''
 
-
     return (
      <div>
-         <Navbar expand="lg" bg="dark" variant='dark' >
-           <Nav.Link as={Link} to='/'><Navbar.Brand>Everglades Ecommerce</Navbar.Brand></Nav.Link> 
+         <Navbar fixed='top' expand="lg" bg="dark" variant='dark' >
+           <Nav.Link as={Link} to='/'><Navbar.Brand>Everglades Ecommerce</Navbar.Brand></Nav.Link>
                 <Nav>
-                  <Nav.Link as={Link} to='/store'>Store</Nav.Link>
+                  <Nav.Link as={Link} to='/store' onClick={() => props.filterItems('')}>Store</Nav.Link>
+                  {/* above onClick will make the store page repopulate when clicked */}
                 </Nav>
 
             <Container fluid id='login-container'>
-              <div>
-                <input className='user-search' type='text' onChange={(event) => searched = event.target.value}></input>
-                <Button type='submit' onClick={() => {props.searchData(searched)}}>Go</Button>
-              </div>
+              {/* Search bar */}
+               <Formik
+                className='user-search'
+                initialValues={{search:''}}
+                onSubmit={(values) => {
+                  searched = values
+                  props.searchData(searched)
+                  console.log(searched);
+                }}>
+                  {/* access Formik data via props */}
+                {props => {
+                  return <Form onSubmit={props.handleSubmit}>
+                    <Link to='/store'><Field
+                    type="text"
+                    name="search"
+                    value={props.values.search}
+                    /></Link>
+                    {/* the field links to store, had to use as a work around for the button not working if wrapped by a Link */}
+                    <Button type="submit">Search</Button>
+                  </Form>
+                }}
+                </Formik>
+
 
               <div className="cart-icon">
               <Nav.Link as={Link} to='/cart'><img src={shoppingCart} alt='shopping cart icon'/  ></Nav.Link>

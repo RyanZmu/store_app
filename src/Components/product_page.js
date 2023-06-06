@@ -12,7 +12,7 @@ const ProductPage = (props) => {
         <div>
            <Container id='product-info-container' fluid>
            <Button as={Link} to='/store'>Go Back</Button>
-            <Card id='product-info'>
+           {productInfo !== undefined ? <Card id='product-info'>
                 <Card.Title>{productInfo.name}</Card.Title>
                 <Card.Subtitle>{productInfo.category}</Card.Subtitle>
                 <Card.Img id='product-info-img' src={productInfo.image} />
@@ -20,7 +20,7 @@ const ProductPage = (props) => {
                 <Button id='purchase-button' onClick={() => props.addCart(productInfo)}>
                  <img src={addTOCartImg} alt='shopping bag icon'/>Add to Cart
                 </Button>
-            </Card>
+            </Card> : null}
            </Container>
         </div>
     )
