@@ -6,6 +6,7 @@ const Cart = (props) => {
 
     return (
         <div id="cart-page">
+            <h3>Shopping Cart:</h3>
             <Container id="cart-container">
                 {props.cart.map(item => {
                    return (<Card key={item._id} className="cart-card">

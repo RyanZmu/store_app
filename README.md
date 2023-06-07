@@ -24,6 +24,8 @@ Current Work (1-5 for difficulty):
 - Consider function for when a user completes login, hide the Login button and replace with the profile componenet, so Log In wont be an option if already Logged in (2)
 - Work on hovering animation for cart - show inventory when hovering (3)
 - Remove cart alert when adding items to the cart via the cart page (not needed) (1)
+- Refactor all functions used in App.js into appropiate components, Cart, Search and API are handled from the top of level of the app, will be easier to maintain if this logic is moved to seperate components, do one at a time. (4)
+- Save cart data to users if logged in (3)
 
 
 Current Issues:

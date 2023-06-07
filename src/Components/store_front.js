@@ -41,13 +41,12 @@ const StoreFront = (props) => {
                     <Dropdown.Item eventKey="4">$25 and Under</Dropdown.Item>
                     <Dropdown.Item eventKey="5">$25 - $100</Dropdown.Item>
                     <Dropdown.Item eventKey="6">$100 - $500</Dropdown.Item>
-                    {/* add price range logic to filterItems */}
+                    {/* add price range logic to filterItems later*/}
 
                 </DropdownButton>
 
                 <Button variant='danger' disabled={disableButton} onClick={() => {
                   props.category("")}}>Remove Filters</Button>
-
             </Container>
 
     <Container className='card-container' fluid='true'>

@@ -16,6 +16,8 @@ function App () {
     let [isFIlterActive, filterActiveState] = useState(true) //button starts DISABLED
     let [cartInv, cartState] = useState([]) // tracks cart inventory
     let [cartAdded, cartAddState] = useState(false) //check for cart alert
+    let [cartCount, cartCountState] = useState(0)
+    // let cartCount = 0
 
     let apiURL = '/api/v1/store'
 
@@ -50,7 +52,8 @@ function App () {
                 itemToAdd.quantity +=1
                 cartState([...cartInv]) //update state
             }
-                cartAddState(true,itemToAdd._id)
+                cartAddState(true)
+                showNotification(true)
 
                 // timeout the alert
                 setTimeout(() => {
@@ -92,11 +95,19 @@ function App () {
             }}
 
 
+            async function showNotification (cartAdded) {
+                console.log(cartAdded);
+                // console.log(cartCount);
+                if (cartAdded) {
+                    cartCountState(cartCount+=1)
+                }
+            }
 return (
      <div id='App'>
         <NavBar
         searchData={searchStore}
         filterItems={filterItems}
+        count={cartCount}
         />
 
         {/*when a user adds to cart, show message  */}

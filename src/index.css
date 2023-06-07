@@ -8,11 +8,11 @@
 }
 
 body {
-  padding-top: 80px;
+  padding-top: 7vh;
 }
-@media (max-width: 979px) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
+@media (max-width: 1000px) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
   body {
-    padding-top: 0px;
+    padding-top: 0vh;
   }
 }
 
@@ -126,12 +126,27 @@ h1,h2 {
   object-fit: contain;
 }
 
-#login-container {
+#user-container {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  align-content: center;
   flex-flow: row nowrap;
-  flex-grow: 3;
-  flex-shrink: 4;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0;
+  color:white;
+}
+
+#search-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  flex-shrink: 5;
+}
+
+#search-field {
+  width: 30vw;
 }
 
 #nav-user-container {
@@ -139,6 +154,7 @@ h1,h2 {
   justify-content: flex-end;
   flex-flow: row nowrap;
   color:white;
+
 }
 
 .nav-user-img {
@@ -147,6 +163,8 @@ h1,h2 {
 
 .cart-icon {
   margin-right: 1em;
+  z-index: 0;
+  position: relative;
 }
 
 #cart-alert {
@@ -154,4 +172,10 @@ h1,h2 {
   width: 100vw;
   z-index: 1;
   background-color: hsla(100, 50%, 70%, 90%); /*added some transparency to avoid blocking text with the alert box - overrode bootstrap stylings*/
+}
+
+#cart-count {
+  z-index: 2;
+  position: fixed;
+  
 }

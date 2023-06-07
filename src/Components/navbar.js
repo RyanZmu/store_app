@@ -3,13 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { Nav, Navbar, Container, Button } from "react-bootstrap"
 import shoppingCart from '../images/shopping-cart.png'
 import { Formik, Form, Field } from "formik"
+import NotificationBadge from '../Components/notification_badge'
 
 
 const NavBar = (props) => {
   const {loginWithRedirect} = useAuth0()
   const {logout} = useAuth0()
   const { user, isAuthenticated} = useAuth0();
-  let searched = ''
 
     return (
      <div>
@@ -20,48 +20,61 @@ const NavBar = (props) => {
                   {/* above onClick will make the store page repopulate when clicked */}
                 </Nav>
 
-            <Container fluid id='login-container'>
+          <Container id="search-container">
               {/* Search bar */}
                <Formik
                 className='user-search'
                 initialValues={{search:''}}
                 onSubmit={(values) => {
-                  searched = values
-                  props.searchData(searched)
-                  console.log(searched);
+                  props.searchData(values)
+                  values.search='' //reset field
                 }}>
                   {/* access Formik data via props */}
                 {props => {
                   return <Form onSubmit={props.handleSubmit}>
                     <Link to='/store'><Field
+                    id='search-field'
+                    className='form-control'
                     type="text"
                     name="search"
                     value={props.values.search}
-                    /></Link>
+                    />
+                    </Link>
                     {/* the field links to store, had to use as a work around for the button not working if wrapped by a Link */}
                     <Button type="submit">Search</Button>
                   </Form>
                 }}
                 </Formik>
+          </Container>
 
-
+            {/* cart icon and notification badge */}
               <div className="cart-icon">
-              <Nav.Link as={Link} to='/cart'><img src={shoppingCart} alt='shopping cart icon'/  ></Nav.Link>
+              {props.count > 0 ? <NotificationBadge cartCount={props.count} /> : null}
+              <Nav.Link
+              as={Link}
+              to='/cart'
+              >
+                <img
+                src={shoppingCart}
+                alt='shopping cart icon'/>
+              </Nav.Link>
               </div>
+
 
               {/* once user is authenticated, show profile info */}
             {isAuthenticated ?
             <Nav.Link as={Link} to='/profile'>
-              <div id='nav-user-container'>
+              <Container id='nav-user-container'>
               <img className='nav-user-img' src={user.picture} alt={user.name}/>
               <p>{`Welcome! ${user.name}`}</p>
-            </div>
+            </Container>
             </Nav.Link>: null}
 
               {/* Login buttons */}
               <Button variant='dark' onClick={() => loginWithRedirect()}>Log In</Button>
               <Button variant='light' onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Log Out</Button>
-            </Container>
+            {/* </Container> */}
+
         </Navbar>
      </div>
     )
