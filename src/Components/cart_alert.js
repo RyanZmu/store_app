@@ -1,4 +1,4 @@
-import { Alert, Badge, Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 
 const CartMessage = (props) => {
     // console.log(props.cartAdded);
@@ -6,7 +6,10 @@ const CartMessage = (props) => {
    return (
         <div>
          <Container fluid id='cart-alert-container'>
-          <Alert id="cart-alert" show={props.cartAdded} variant="success">
+          <Alert
+          id="cart-alert"
+          show={props.cartAdded}
+          variant="success">
            <Alert.Heading>Added to Cart</Alert.Heading>
           </Alert>
          </Container>

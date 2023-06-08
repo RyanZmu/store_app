@@ -3,21 +3,21 @@
   margin: 0
 }
 
-#App {
-  background-color: grey;
-}
-
-body {
+body { /* in future replace background */
   padding-top: 7vh;
+  background-image: url('./images/banner_image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-@media (max-width: 1000px) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
+@media (max-width: 25vh) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
   body {
     padding-top: 0vh;
   }
 }
 
 h1,h2 {
-  color: black;
+  color: white;
+  background-color: hsla(100, 10%, 70%, 40%);
 }
 
 .carousel-image {
@@ -151,8 +151,8 @@ h1,h2 {
 
 #nav-user-container {
   display: flex;
-  justify-content: flex-end;
-  flex-flow: row nowrap;
+  justify-content: center;
+  flex-flow: row wrap;
   color:white;
 
 }
@@ -177,5 +177,4 @@ h1,h2 {
 #cart-count {
   z-index: 2;
   position: fixed;
-  
 }

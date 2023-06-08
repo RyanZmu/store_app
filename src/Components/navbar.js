@@ -14,10 +14,21 @@ const NavBar = (props) => {
     return (
      <div>
          <Navbar fixed='top' expand="lg" bg="dark" variant='dark' >
-           <Nav.Link as={Link} to='/'><Navbar.Brand>Everglades Ecommerce</Navbar.Brand></Nav.Link>
                 <Nav>
-                  <Nav.Link as={Link} to='/store' onClick={() => props.filterItems('')}>Store</Nav.Link>
-                  {/* above onClick will make the store page repopulate when clicked */}
+                  <Nav.Link as={Link} to='/'>
+                    <Navbar.Brand>Everglades Ecommerce</Navbar.Brand>
+                  </Nav.Link>
+                  {/* onClick will make the store page repopulate when clicked */}
+                  <Nav.Link
+                  as={Link} to='/store'
+                  onClick={() => props.filterItems('')}>
+                    Store
+                  </Nav.Link>
+                  <Nav.Link
+                  as={Link}
+                  to='/services'>
+                    Services
+                  </Nav.Link>
                 </Nav>
 
           <Container id="search-container">
@@ -32,13 +43,14 @@ const NavBar = (props) => {
                   {/* access Formik data via props */}
                 {props => {
                   return <Form onSubmit={props.handleSubmit}>
-                    <Link to='/store'><Field
-                    id='search-field'
-                    className='form-control'
-                    type="text"
-                    name="search"
-                    value={props.values.search}
-                    />
+                    <Link to='/store'>
+                      <Field
+                      id='search-field'
+                      className='form-control'
+                      type="text"
+                      name="search"
+                      value={props.values.search}
+                      />
                     </Link>
                     {/* the field links to store, had to use as a work around for the button not working if wrapped by a Link */}
                     <Button type="submit">Search</Button>
@@ -65,16 +77,28 @@ const NavBar = (props) => {
             {isAuthenticated ?
             <Nav.Link as={Link} to='/profile'>
               <Container id='nav-user-container'>
-              <img className='nav-user-img' src={user.picture} alt={user.name}/>
+              <img
+              className='nav-user-img'
+              src={user.picture}
+              alt={user.name}
+              />
               <p>{`Welcome! ${user.name}`}</p>
-            </Container>
+              </Container>
             </Nav.Link>: null}
 
               {/* Login buttons */}
-              <Button variant='dark' onClick={() => loginWithRedirect()}>Log In</Button>
-              <Button variant='light' onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Log Out</Button>
-            {/* </Container> */}
-
+              <Button
+              variant='dark'
+              onClick={() => loginWithRedirect()}
+              >
+                Log In
+              </Button>
+              <Button
+              variant='light'
+              onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}
+              >
+                Log Out
+              </Button>
         </Navbar>
      </div>
     )

@@ -10,10 +10,8 @@ const LandingPage = (props) => {
 
  return (
     <div>
-        <Container className='carousel-container' fluid='true'>
-          <h1>Welcome to Everglades</h1>
-          <h2>For all your ECommerce Needs</h2>
-           <Carousel variant='dark'>
+        <Container className='carousel-container' fluid>
+           <Carousel variant='light'>
             <Carousel.Item>
                 <img className='carousel-image'
                 src= {shoppingBagImg}

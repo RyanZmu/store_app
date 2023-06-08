@@ -8,7 +8,7 @@ import Cart from './Components/cart'
 import StoreFront from './Components/store_front'
 import ProductPage from './Components/product_page'
 import UserProfile from './Components/user_profile'
-import CartMessage from './Components/cart_toast'
+import CartMessage from './Components/cart_alert'
 
 function App () {
     let [storeData, dataState] = useState([]) // initial store data - all items
@@ -82,16 +82,18 @@ function App () {
             // Search bar
         async function searchStore (searchReq) {
             console.log(searchReq);
-            let itemSearched;
-
+            let itemsSearched = []
+            //in the future tags will be added and those will be compared to search requests if valid
             if (searchReq.search !== "") {
                 storeData.filter(item => {
                     if (item.name.toLowerCase().includes(searchReq.search.toLowerCase())) {
-                    return itemSearched = item
+                      itemsSearched.push(item)
+                      console.log(itemsSearched);
                     }
+                    return itemsSearched
                 })
             filterActiveState(false) // disabled==false so remove button works
-            return itemSearched !== undefined ? filterState([itemSearched]) : null // store front expects an array, if itemSearched is invalid then we do nothing
+            return itemsSearched !== undefined ? filterState([...itemsSearched]) : null // store front expects an array, if itemSearched is invalid then we do nothing
             }}
 
 
@@ -118,13 +120,15 @@ return (
             <Route
             path='/'
             element= {<LandingPage
-            category={filterItems} />}/>
+            category={filterItems}
+            />}/>
 
             <Route
             path='/store/:id'
             element= {<ProductPage
             storeData={storeData}
-            addCart={addCart} />}/>
+            addCart={addCart}
+            />}/>
 
             <Route
             path='/store'
@@ -133,7 +137,8 @@ return (
             category={filterItems}
             addCart={addCart}
             isCartAdded={cartAdded}
-            isFilterActive={isFIlterActive} />}/>
+            isFilterActive={isFIlterActive}
+            />}/>
             {/* here we send the filterItems function to /store and then the OnClick function in /store sends it's data back to the App component, do same for API Request component if possible */}
 
             <Route
@@ -142,11 +147,13 @@ return (
             cart={cartInv}
             increaseCart={addCart}
             removeCart={removeItems}
-            subtractCart={subtractItems} />}/>
+            subtractCart={subtractItems}
+            />}/>
 
             <Route
             path='/profile'
-            element={<UserProfile />}/>
+            element={<UserProfile
+            />}/>
         </Routes>
 
         <footer>Icons Provided By:<a href="https://www.flaticon.com/" > Flaticon </a></footer>
