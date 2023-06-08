@@ -37,32 +37,66 @@ const LandingPage = (props) => {
           </Container>
 
 {/* Cards for different categories - make own cards component possibly*/}
-        <Container className='landing-card-container' fluid='true'>
-         <Nav.Link as={Link} to='/store' onClick={() => {props.category("Home")}}>
-            <Card className='card-ele' bg='dark' text='light' >
+        <Container
+        className='landing-card-container'
+        fluid='true'
+        >
+         <Nav.Link
+         as={Link}
+         to='/store'
+         onClick={() => {props.category("Home")}}
+         >
+            <Card
+            className='card-ele'
+            bg='dark'
+            text='light'
+            >
                 <Card.Header>Home</Card.Header>
-                <Card.Img className='category-card-img' src={homeCategoryImg}/>
+                <Card.Img
+                className='category-card-img'
+                src={homeCategoryImg}
+                />
                 <Card.Body>
                     <Card.Title>Click here to shop Home!</Card.Title>
                 </Card.Body>
             </Card>
         </Nav.Link>
 
-          <Nav.Link as={Link} to='/store' onClick={() => {props.category("Clothes")}}>
+          <Nav.Link
+          as={Link}
+          to='/store'
+          onClick={() => {props.category("Clothes")}}
+          >
             <Card
-            className='card-ele' bg='dark' text='light'>
+            className='card-ele'
+            bg='dark'
+            text='light'>
                 <Card.Header>Clothes</Card.Header>
-                <Card.Img className='category-card-img' src={clothesCategoryImg}/>
+                <Card.Img
+                className='category-card-img'
+                src={clothesCategoryImg}
+                />
                 <Card.Body>
                     <Card.Title>Click here to shop Clothes!</Card.Title>
                 </Card.Body>
             </Card>
          </Nav.Link>
 
-          <Nav.Link as={Link} to='/store' onClick={() => {props.category("Electronics")}}>
-            <Card className='card-ele' bg='dark' text='light'>
+          <Nav.Link
+          as={Link}
+          to='/store'
+          onClick={() => {props.category("Electronics")}}
+          >
+            <Card
+            className='card-ele'
+            bg='dark'
+            text='light'
+            >
                 <Card.Header>Electronics</Card.Header>
-                <Card.Img className='category-card-img' src={electronicsCategoryImg}/>
+                <Card.Img
+                className='category-card-img'
+                src={electronicsCategoryImg}
+                />
                 <Card.Body>
                     <Card.Title>Click here to shop Electronics!</Card.Title>
                 </Card.Body>
