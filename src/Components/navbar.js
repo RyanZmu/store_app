@@ -12,8 +12,8 @@ const NavBar = (props) => {
   const { user, isAuthenticated} = useAuth0();
 
     return (
-     <div>
-         <Navbar fixed='top' expand="lg" bg="dark" variant='dark' >
+     <Container fluid id="nav-bar-container">
+         <Navbar className="nav-bar" expand="lg" bg="dark" variant='dark' >
                 <Nav>
                   <Nav.Link as={Link} to='/'>
                     <Navbar.Brand>Everglades Ecommerce</Navbar.Brand>
@@ -33,7 +33,7 @@ const NavBar = (props) => {
 
           <Container id="search-container">
               {/* Search bar */}
-               <Formik
+              <Formik
                 className='user-search'
                 initialValues={{search:''}}
                 onSubmit={(values) => {
@@ -42,7 +42,8 @@ const NavBar = (props) => {
                 }}>
                   {/* access Formik data via props */}
                 {props => {
-                  return <Form onSubmit={props.handleSubmit}>
+                  return(
+                   <Form onSubmit={props.handleSubmit}>
                     <Link to='/store'>
                       <Field
                       id='search-field'
@@ -54,22 +55,23 @@ const NavBar = (props) => {
                     </Link>
                     {/* the field links to store, had to use as a work around for the button not working if wrapped by a Link */}
                     <Button type="submit">Search</Button>
-                  </Form>
-                }}
-                </Formik>
+                   </Form>
+                )}}
+              </Formik>
           </Container>
 
             {/* cart icon and notification badge */}
               <div className="cart-icon">
-              {props.count > 0 ? <NotificationBadge cartCount={props.count} /> : null}
-              <Nav.Link
-              as={Link}
-              to='/cart'
-              >
-                <img
-                src={shoppingCart}
-                alt='shopping cart icon'/>
-              </Nav.Link>
+                {props.count > 0 ? <NotificationBadge cartCount={props.count} /> : null}
+                <Nav.Link
+                as={Link}
+                to='/cart'
+                >
+                  <img
+                  src={shoppingCart}
+                  alt='shopping cart icon'
+                  />
+                </Nav.Link>
               </div>
 
 
@@ -100,7 +102,7 @@ const NavBar = (props) => {
                 Log Out
               </Button>
         </Navbar>
-     </div>
+     </Container>
     )
 }
 

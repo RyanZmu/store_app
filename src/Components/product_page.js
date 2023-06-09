@@ -9,7 +9,6 @@ const ProductPage = (props) => {
     // console.log(productInfo);
 
     return (
-        <div>
            <Container
            id='product-info-container'
            fluid
@@ -40,7 +39,6 @@ const ProductPage = (props) => {
                 </Button>
             </Card> : null}
            </Container>
-        </div>
     )
 }
 

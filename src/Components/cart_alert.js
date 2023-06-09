@@ -4,7 +4,6 @@ const CartMessage = (props) => {
     // console.log(props.cartAdded);
 
    return (
-        <div>
          <Container fluid id='cart-alert-container'>
           <Alert
           id="cart-alert"
@@ -13,7 +12,6 @@ const CartMessage = (props) => {
            <Alert.Heading>Added to Cart</Alert.Heading>
           </Alert>
          </Container>
-        </div>
     )
 }
 

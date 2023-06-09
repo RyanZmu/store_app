@@ -9,7 +9,7 @@ import electronicsCategoryImg from '../images/categories/electronics_category.jp
 const LandingPage = (props) => {
 
  return (
-    <div>
+    <Container fluid id="landing-page-container">
         <Container className='carousel-container' fluid>
            <Carousel variant='light'>
             <Carousel.Item>
@@ -50,6 +50,7 @@ const LandingPage = (props) => {
             className='card-ele'
             bg='dark'
             text='light'
+            border='primary'
             >
                 <Card.Header>Home</Card.Header>
                 <Card.Img
@@ -70,7 +71,9 @@ const LandingPage = (props) => {
             <Card
             className='card-ele'
             bg='dark'
-            text='light'>
+            text='light'
+            border='success'
+            >
                 <Card.Header>Clothes</Card.Header>
                 <Card.Img
                 className='category-card-img'
@@ -91,6 +94,7 @@ const LandingPage = (props) => {
             className='card-ele'
             bg='dark'
             text='light'
+            border='danger'
             >
                 <Card.Header>Electronics</Card.Header>
                 <Card.Img
@@ -104,7 +108,7 @@ const LandingPage = (props) => {
          </Nav.Link>
         </Container>
 
-    </div>)
+    </Container>)
 }
 
 export default LandingPage

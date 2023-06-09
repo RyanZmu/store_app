@@ -1,12 +1,12 @@
-import { Badge } from "react-bootstrap";
+import { Badge, Container } from "react-bootstrap";
 
 const NotificationBade = (props) => {
     return (
-        <div>
+        <Container>
             <Badge pill id='cart-count'>
                 {props.cartCount}
             </Badge>
-        </div>
+        </Container>
     )
 }
 

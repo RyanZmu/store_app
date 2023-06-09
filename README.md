@@ -5,7 +5,7 @@ Frontend Tools:
 - CSS/HTML
 - Formik
 - Auth0
-- Bootstrapper
+- React Bootstrap
 - React Router Dom
 
 Backend Tools:
@@ -20,19 +20,18 @@ Backend Tools:
 
 Current Work (1-5 for difficulty):
 - Display active filters and allow user to click X and remove the filter - implement after Price Range filtering is added (3)
-- Add a new Route to a "Services" page, have this offer various tech services that users could sign off for, oppurtunites to design more and give site more choices beyond just "Store" (1)
 - Add alerts for login/logout (1)
 - Consider function for when a user completes login, hide the Login button and replace with the profile componenet, so Log In wont be an option if already Logged in (2)
 - Work on hovering animation for cart - show inventory when hovering (3)
 - Remove cart alert when adding items to the cart via the cart page (not needed) (1)
-- Refactor all functions used in App.js into appropiate components, Cart, Search and API are handled from the top of level of the app, will be easier to maintain if this logic is moved to seperate components, do one at a time. (4)
+- Refactor all functions used in App.js into appropiate components, Cart, Search and API are handled from the top of level of the app, will be easier to maintain if this logic is moved to seperate components, do one at a time.(API now moved) (4)
 - Save cart data to users if logged in (5) - add new Cart data table to DB to save all users cart data, will need API logic to do these tasks, submitting an order will clear the users cart data.
 - Look into using tsParticles library for creating a confetti effect when a user submits their cart
-- Create a mock payment form for user - for now just clear the cart and say Payment Accepted - later when we have cart in a database, this will clear the users cart and send a fake email to signed in users email or provided email (3) email part (4)
+- Create a mock payment form for user - for now just clear the cart and say Payment Accepted - (possibly use bootstrap Offcanvas item for the checkout form) - later when we have cart in a database, this will clear the users cart and send a fake email to signed in users email or provided email (3) email part (4)
+- Consider changing Cart Alert to a transition text after Add to Cart is pressed, could look more clean overall (2)
 
 Current Issues:
-
-
+- All functionality is good for now, work on implementing new features
 
 Application Expectations:
 - App will have an REST API that I will create with Node and Postman, just a very basic API

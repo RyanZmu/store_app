@@ -22,9 +22,9 @@ const StoreFront = (props) => {
     // console.log(props.isCartAdded);
     // console.log(disableButton);
     // console.log({storeInventory});
-    return (
-  <div>
-{/* Keep filter list here since it will only be used in the storefront */}
+  return (
+   <Container fluid id='store-front-container'>
+      {/* Keep filter list here since it will only be used in the storefront */}
     <Container fluid className='filter-list-container'>
                 <DropdownButton as={ButtonGroup} title='Filters' vertical>
                     <Dropdown.Header>Department</Dropdown.Header>
@@ -78,6 +78,9 @@ const StoreFront = (props) => {
            id={data._id}
            key={data._id}
            className='product-cards'
+           bg='dark'
+           text='light'
+           border='primary'
            >
             <Nav.Link
             as={Link}
@@ -108,7 +111,7 @@ const StoreFront = (props) => {
     )}) : null //conditional so no rendering when data not found
        }
     </Container>
-  </div>
+  </Container>
     );
 };
 

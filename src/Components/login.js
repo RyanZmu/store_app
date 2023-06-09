@@ -6,12 +6,10 @@ const LoginPage = () => {
     const {logout} = useAuth0()
 
     return (
-        <div>
-         <Container>
-        <Button onClick={() => loginWithRedirect()}>Log In</Button>
-        <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Log  out</Button>
+        <Container id="user-login-container">
+            <Button onClick={() => loginWithRedirect()}>Log In</Button>
+            <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin }})}>Log  out</Button>
         </Container>
-        </div>
     )
 }
 

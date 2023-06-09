@@ -3,22 +3,21 @@
   margin: 0
 }
 
-body { /* in future replace background */
-  padding-top: 7vh;
+#App {
+  background-color: rgb(36, 33, 33);
+}
+
+body { /* in future replace background with maybe something from tsParticle or the like*/
   background-image: url('./images/banner_image.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-}
-@media (max-width: 25vh) { /*Prevents navbar from covering top content when fixed- stack overflow solution*/
-  body {
-    padding-top: 0vh;
-  }
 }
 
 h1,h2 {
   color: white;
   background-color: hsla(100, 10%, 70%, 40%);
 }
+
 
 .carousel-image {
   height: 50vh;
@@ -162,7 +161,6 @@ h1,h2 {
 }
 
 .cart-icon {
-  margin-right: 1em;
   z-index: 0;
   position: relative;
 }

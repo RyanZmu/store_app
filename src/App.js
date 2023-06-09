@@ -9,6 +9,7 @@ import StoreFront from './Components/store_front'
 import ProductPage from './Components/product_page'
 import UserProfile from './Components/user_profile'
 import CartMessage from './Components/cart_alert'
+import APIRequests from './Components/api_requests'
 
 function App () {
     let [storeData, dataState] = useState([]) // initial store data - all items
@@ -17,19 +18,6 @@ function App () {
     let [cartInv, cartState] = useState([]) // tracks cart inventory
     let [cartAdded, cartAddState] = useState(false) //check for cart alert
     let [cartCount, cartCountState] = useState(0)
-    // let cartCount = 0
-
-    let apiURL = '/api/v1/store'
-
-        //useEffect to ensure just one API call; App does an inital API call to populate storeData
-        useEffect(() => {
-                fetch(apiURL)
-                .then(result => result.json())
-                .then(body => dataState(body))
-                .catch(error => {
-                    console.error('Error with fetching',error.message)
-                })
-                },[apiURL])
 
             //Filter
         async function filterItems (requestedCategory) {
@@ -50,6 +38,7 @@ function App () {
                 cartState([...cartInv,itemToAdd])
                 }else { //if already in cart then increase quantity
                 itemToAdd.quantity +=1
+                cartCountState(cartCount + 1)
                 cartState([...cartInv]) //update state
             }
                 cartAddState(true)
@@ -66,6 +55,7 @@ function App () {
               console.log(itemToSubtract)
               if (itemToSubtract.quantity >= 2) {
                 itemToSubtract.quantity -= 1
+                cartCountState(cartCount - 1)
               }
               cartState([...cartInv])
         }
@@ -74,6 +64,7 @@ function App () {
         async function removeItems(itemToRemove) {
               let indexToRemove =  cartInv.indexOf(itemToRemove)
               console.log(indexToRemove);
+              cartCountState(cartCount - itemToRemove.quantity)
               itemToRemove.quantity = 0
               cartInv.splice(indexToRemove,1,)
               cartState([...cartInv]) //update state
@@ -112,8 +103,18 @@ return (
         count={cartCount}
         />
 
+        {/* Inital API app makes to populate store, later see if StoreFront can do this */}
+        {/* Brainstorm: have a function within App to handle API requests, for instance StoreFront can send the GETALL request to App.js and then send this to API Request */}
+        <APIRequests
+        storeData={dataState}
+        type={'GETALL'}
+        />
+
         {/*when a user adds to cart, show message  */}
-        {cartAdded === true ?<CartMessage cartAdded={cartAdded}/> : null}
+        {cartAdded === true ?
+        <CartMessage
+        cartAdded={cartAdded}
+        /> : null}
 
         {/* Routing */}
         <Routes>

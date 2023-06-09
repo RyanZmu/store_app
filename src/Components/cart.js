@@ -5,14 +5,17 @@ const Cart = (props) => {
 
 
     return (
-        <div id="cart-page">
-            <h3>Shopping Cart:</h3>
+        <Container id="cart-page">
+            <h2>Shopping Cart:</h2>
             <Container id="cart-container">
                 {props.cart.map(item => {
                    return (
                         <Card
                         key={item._id}
                         className="cart-card"
+                        bg='dark'
+                        text='light'
+                        border='success'
                         >
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Subtitle>{item.currency + item.price}</Card.Subtitle>
@@ -47,7 +50,7 @@ const Cart = (props) => {
             {/* order form component here */}
             <Button>Submit Order</Button>
 
-        </div>
+        </Container>
     )
 }
 
