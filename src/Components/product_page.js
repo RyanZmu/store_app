@@ -19,7 +19,7 @@ const ProductPage = (props) => {
            >
             Go Back
           </Button>
-           {productInfo !== undefined ? <Card id='product-info'>
+           {productInfo !== undefined ? <Card id='product-info' bg="dark">
                 <Card.Title>{productInfo.name}</Card.Title>
                 <Card.Subtitle>{productInfo.category}</Card.Subtitle>
                 <Card.Img

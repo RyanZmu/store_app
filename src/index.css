@@ -5,6 +5,7 @@
 
 #App {
   background-color: rgb(36, 33, 33);
+  color: white;
 }
 
 body { /* in future replace background with maybe something from tsParticle or the like*/
@@ -175,4 +176,10 @@ h1,h2 {
 #cart-count {
   z-index: 2;
   position: fixed;
+}
+
+#order-summary-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }

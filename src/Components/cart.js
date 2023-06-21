@@ -1,4 +1,5 @@
 import { Button, Card, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Cart = (props) => {
     console.log(props.cart);
@@ -47,8 +48,8 @@ const Cart = (props) => {
                  })
                 }
             </Container>
-            {/* order form component here */}
-            <Button>Submit Order</Button>
+            {/* link to order form component here */}
+            <Link to='/order'><Button>Proceed to Checkout</Button></Link>
 
         </Container>
     )

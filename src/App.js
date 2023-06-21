@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState} from "react"
 import { Routes, Route } from "react-router-dom"
 
 // Import Components
@@ -10,6 +10,7 @@ import ProductPage from './Components/product_page'
 import UserProfile from './Components/user_profile'
 import CartMessage from './Components/cart_alert'
 import APIRequests from './Components/api_requests'
+import OrderForm from "./Components/order_form"
 
 function App () {
     let [storeData, dataState] = useState([]) // initial store data - all items
@@ -149,6 +150,12 @@ return (
             increaseCart={addCart}
             removeCart={removeItems}
             subtractCart={subtractItems}
+            />}/>
+
+            <Route
+            path='/order'
+            element={<OrderForm
+            cart={cartInv}
             />}/>
 
             <Route
