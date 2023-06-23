@@ -5,11 +5,16 @@ import shoppingCart from '../images/shopping-cart.png'
 import { Formik, Form, Field } from "formik"
 import NotificationBadge from '../Components/notification_badge'
 
+import Cart from '../Components/cart'
+
 
 const NavBar = (props) => {
+  //consider moving 0Auth code to App.js
   const {loginWithRedirect} = useAuth0()
   const {logout} = useAuth0()
   const { user, isAuthenticated} = useAuth0();
+
+  // console.log(props.mouseOver);
 
     return (
      <Container fluid id="nav-bar-container">
@@ -48,7 +53,7 @@ const NavBar = (props) => {
                       <Field
                       id='search-field'
                       className='form-control'
-                      type="text"
+                      type="search"
                       name="search"
                       value={props.values.search}
                       />
@@ -61,7 +66,9 @@ const NavBar = (props) => {
           </Container>
 
             {/* cart icon and notification badge */}
-              <div className="cart-icon">
+              <div className="cart-icon" onMouseOver={props.mouseOver} onMouseOut={props.mouseOut}>
+                {/* working on cart hovering page - Link is hacky but works */}
+              <Link to='/cart'><div id='cart-hover-page'>{props.isHovering ? <Cart cart={props.cart} /> : null}</div></Link>
                 {props.count > 0 ? <NotificationBadge cartCount={props.count} /> : null}
                 <Nav.Link
                 as={Link}

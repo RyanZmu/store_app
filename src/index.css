@@ -61,7 +61,7 @@ h1,h2 {
   margin: 2rem 0;
   padding: auto;
   width: 20vw;
-  height: 10vh;;
+  height: 10vh;
 }
 
 .landing-card-container {
@@ -74,6 +74,8 @@ h1,h2 {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  position: relative;
+  z-index: 0;
 }
 
 .product-cards {
@@ -162,8 +164,13 @@ h1,h2 {
 }
 
 .cart-icon {
-  z-index: 0;
   position: relative;
+}
+
+#cart-hover-page {
+ position: absolute;
+ margin-left: -10vw;
+ z-index: 5;
 }
 
 #cart-alert {
@@ -174,8 +181,7 @@ h1,h2 {
 }
 
 #cart-count {
-  z-index: 2;
-  position: fixed;
+  position: absolute;
 }
 
 #order-summary-container {

@@ -10,29 +10,41 @@ import ProductPage from './Components/product_page'
 import UserProfile from './Components/user_profile'
 import CartMessage from './Components/cart_alert'
 import APIRequests from './Components/api_requests'
-import OrderForm from "./Components/order_form"
+import OrderForm from './Components/order_form'
 
 function App () {
-    let [storeData, dataState] = useState([]) // initial store data - all items
-    let [filteredData, filterState] = useState([]) // filtered if user requests it
-    let [isFIlterActive, filterActiveState] = useState(true) //button starts DISABLED
-    let [cartInv, cartState] = useState([]) // tracks cart inventory
-    let [cartAdded, cartAddState] = useState(false) //check for cart alert
-    let [cartCount, cartCountState] = useState(0)
+    let [storeData, dataState] = useState([]); // initial store data - all items
+    let [filteredData, filterState] = useState([]); // filtered if user requests it
+    let [isFIlterActive, filterActiveState] = useState(true); //button starts DISABLED
+    let [cartInv, cartState] = useState([]); // tracks cart inventory
+    let [cartAdded, cartAddState] = useState(false); //check for cart alert
+    let [cartCount, cartCountState] = useState(0); //track cart quantity
+    let [isHovering, isHoveringState] = useState(false);
 
-            //Filter
+
+        //Mouse over events for displaying cart inventory when hovering over cart icon
+        async function handleMouseOver () {
+            console.log("hey the mouse is over me!");
+            isHoveringState(true);
+        }
+
+        async function handleMouseOut() {
+            isHoveringState(false);
+        }
+
+            //Filter store page
         async function filterItems (requestedCategory) {
                 // if requestCategory is ALL ("") then disable filter button, otherwise Enable it
-                requestedCategory === "" ? filterActiveState(true) : filterActiveState(false)
+                requestedCategory === "" ? filterActiveState(true) : filterActiveState(false);
 
-                return filterState(storeData.filter(items => items.category === requestedCategory))
+                return filterState(storeData.filter(items => items.category === requestedCategory));
             }
 
             //Cart functions
         async function addCart (itemToAdd) {
             //creates quantity for item, starts at 1 once user adds to cart. Compare to stock count when user submits order
                 if (itemToAdd.quantity === undefined || itemToAdd.quantity === 0){
-                itemToAdd.quantity = 1
+                itemToAdd.quantity = 1;
                 }
 
                 if (!cartInv.some(item => item._id === itemToAdd._id)){
@@ -89,19 +101,22 @@ function App () {
             }}
 
 
-            async function showNotification (cartAdded) {
-                console.log(cartAdded);
-                // console.log(cartCount);
-                if (cartAdded) {
-                    cartCountState(cartCount+=1)
-                }
+        async function showNotification (cartAdded) {
+            if (cartAdded) {
+                cartCountState(cartCount+=1)
             }
+        }
+
 return (
      <div id='App'>
         <NavBar
         searchData={searchStore}
         filterItems={filterItems}
         count={cartCount}
+        cart={cartInv}
+        mouseOver={handleMouseOver}
+        mouseOut={handleMouseOut}
+        isHovering={isHovering}
         />
 
         {/* Inital API app makes to populate store, later see if StoreFront can do this */}

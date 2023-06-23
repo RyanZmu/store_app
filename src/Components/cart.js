@@ -2,9 +2,11 @@ import { Button, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Cart = (props) => {
-    console.log(props.cart);
 
-
+    // Calculate cart subtotal
+    let subTotal = 0
+    props.cart.map(item => subTotal += item.price * item.quantity)
+    //
     return (
         <Container id="cart-page">
             <h2>Shopping Cart:</h2>
@@ -49,6 +51,7 @@ const Cart = (props) => {
                 }
             </Container>
             {/* link to order form component here */}
+            <h2>Subtotal: ${subTotal}</h2>
             <Link to='/order'><Button>Proceed to Checkout</Button></Link>
 
         </Container>
